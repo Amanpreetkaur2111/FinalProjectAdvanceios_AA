@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		615F42CF23DA2C28002FE090 /* NotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615F42CE23DA2C28002FE090 /* NotesTableViewController.swift */; };
+		615F42D123DA3294002FE090 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615F42D023DA3294002FE090 /* CategoryTableViewController.swift */; };
 		BD3863CF23DA180E007CD9C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3863CE23DA180E007CD9C1 /* AppDelegate.swift */; };
 		BD3863D123DA180E007CD9C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3863D023DA180E007CD9C1 /* SceneDelegate.swift */; };
 		BD3863D323DA180E007CD9C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3863D223DA180E007CD9C1 /* ViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		615F42CE23DA2C28002FE090 /* NotesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewController.swift; sourceTree = "<group>"; };
+		615F42D023DA3294002FE090 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		BD3863CB23DA180E007CD9C1 /* FinalProjectAdvanceios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProjectAdvanceios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD3863CE23DA180E007CD9C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD3863D023DA180E007CD9C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +43,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		615F42CD23DA2C07002FE090 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				BD3863D223DA180E007CD9C1 /* ViewController.swift */,
+				615F42D023DA3294002FE090 /* CategoryTableViewController.swift */,
+				615F42CE23DA2C28002FE090 /* NotesTableViewController.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		BD3863C223DA180D007CD9C1 = {
 			isa = PBXGroup;
 			children = (
@@ -59,8 +73,8 @@
 			isa = PBXGroup;
 			children = (
 				BD3863CE23DA180E007CD9C1 /* AppDelegate.swift */,
+				615F42CD23DA2C07002FE090 /* New Group */,
 				BD3863D023DA180E007CD9C1 /* SceneDelegate.swift */,
-				BD3863D223DA180E007CD9C1 /* ViewController.swift */,
 				BD3863D423DA180E007CD9C1 /* Main.storyboard */,
 				BD3863DA23DA180F007CD9C1 /* Assets.xcassets */,
 				BD3863DC23DA180F007CD9C1 /* LaunchScreen.storyboard */,
@@ -145,6 +159,8 @@
 				BD3863D923DA180E007CD9C1 /* FinalProjectAdvanceios.xcdatamodeld in Sources */,
 				BD3863CF23DA180E007CD9C1 /* AppDelegate.swift in Sources */,
 				BD3863D123DA180E007CD9C1 /* SceneDelegate.swift in Sources */,
+				615F42CF23DA2C28002FE090 /* NotesTableViewController.swift in Sources */,
+				615F42D123DA3294002FE090 /* CategoryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
