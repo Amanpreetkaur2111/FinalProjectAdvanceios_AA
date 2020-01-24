@@ -11,11 +11,12 @@ import  CoreData
 
 class CategoryTableViewController: UITableViewController {
 
-    var category: [String] = []
+    var category: [String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loadData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -32,14 +33,14 @@ class CategoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return category.count ?? 0
+        return category?.count ?? 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell"){
         
-            cell.textLabel?.text = category[indexPath.row]
+            cell.textLabel?.text = category![indexPath.row]
             
         // Configure the cell...
 
@@ -85,15 +86,30 @@ class CategoryTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if let des = segue.destination as? NotesTableViewController{
+            
+            des.catname = (sender as! UITableViewCell).textLabel?.text
+            
+            
+        }
+        
+        if let des2 = segue.destination as? ViewController{
+            des2.old = false
+        }
+        
+        
+        
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
     func loadData()
     {
@@ -103,12 +119,13 @@ class CategoryTableViewController: UITableViewController {
        let FetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes")
         
         do{
+            category = []
             let result = try context.fetch(FetchReq)
             for r in result as! [NSManagedObject]{
                 let cat = r.value(forKey: "category") as! String
                 
-                if(!category.contains(cat)){
-                    category.append(cat)}
+                if(!category!.contains(cat)){
+                    category!.append(cat)}
             }
         }
         catch{

@@ -16,54 +16,75 @@ class ViewController: UIViewController {
     @IBOutlet weak var titleTxtField: UITextField!
     @IBOutlet weak var descTxtField: UITextView!
     
+    var EditNote: NSManagedObject?
+    var noteName = ""
+    var old: Bool?
+    var context: NSManagedObjectContext?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
+        context = appDelegate.persistentContainer.viewContext
         
-        let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes")
-        do{
-            let result = try context.fetch(fetchReq)
-            for r in result as! [NSManagedObject]{
-                categoryTxtField.text = r.value(forKey: "category") as? String
-                titleTxtField.text = r.value(forKey: "title") as? String
-                descTxtField.text = r.value(forKey: "desc") as? String
-                }
-        }
-            catch{
-                print(error)
+        if old!{
+            // old note
+            
+            
+            let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes")
+            
+            fetchReq.predicate = NSPredicate(format: "title = %@", noteName)
+            fetchReq.returnsObjectsAsFaults = false
+            
+            
+            do{
+                let result = try context!.fetch(fetchReq)
+                EditNote = result[0] as! NSManagedObject
+                    categoryTxtField.text = EditNote!.value(forKey: "category") as? String
+                    titleTxtField.text = EditNote!.value(forKey: "title") as? String
+                    descTxtField.text = EditNote!.value(forKey: "desc") as? String
+                    
+                
+                
             }
+                catch{
+                    print(error)
+                }
+            }
+            
         }
+        
     
 
 
     @IBAction func saveData(_ sender: UIButton) {
-        do{
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let notesEntity = NSEntityDescription.insertNewObject(forEntityName: "Notes", into: context)
         
-        let Category = categoryTxtField.text ?? ""
-        let Title = titleTxtField.text ?? ""
-        let Description = descTxtField.text ?? ""
-        
-        
-        notesEntity.setValue(Category, forKey: "category")
-        notesEntity.setValue(Title, forKey: "title")
-        notesEntity.setValue(Description, forKey: "desc")
-    
-        do{
-            try context.save()
+        if !old! {
+            // add new objectnew object
+            EditNote = NSEntityDescription.insertNewObject(forEntityName: "Notes", into: context!)
+            
         }
-        catch{
-            print(error)
+            
+            EditNote!.setValue(categoryTxtField.text, forKey: "category")
+                EditNote!.setValue(titleTxtField.text, forKey: "title")
+            EditNote!.setValue(descTxtField.text, forKey: "desc")
+            
+                do{
+                    try context!.save()
+                }
+                catch{
+                    print(error)
+                }
+                categoryTxtField.text = ""
+                titleTxtField.text = ""
+                descTxtField.text = ""
+       
+          
         }
-        categoryTxtField.text = ""
-        titleTxtField.text = ""
-        descTxtField.text = ""
         
-    }
+        
+  
+        
 }
 
-}
+

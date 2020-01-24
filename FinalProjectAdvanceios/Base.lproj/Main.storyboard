@@ -94,7 +94,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900" y="-396"/>
+            <point key="canvasLocation" x="1510" y="-397"/>
         </scene>
         <!--Notes -->
         <scene sceneID="ucH-HU-qR6">
@@ -202,6 +202,6 @@
         <image name="folder.badge.plus" catalog="system" width="64" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IFR-Kp-j74"/>
+        <segue reference="rRT-BV-gBg"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,11 +14,11 @@ class NotesTableViewController: UITableViewController {
 
     
     var notes: [NSManagedObject]?
-    
+    var catname: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -49,7 +49,36 @@ class NotesTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let notesTitle = notes![indexPath.row].value(forKey: "title") as? String
+        let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName:
+        "Notes")
+        fetchReq.predicate = NSPredicate(format: "title contains %@", notesTitle!)
+        fetchReq.returnsObjectsAsFaults = false
+        do{
+        let req = try context.fetch(fetchReq)
+            for r in req as! [NSManagedObject]
+            {
+                context.delete(r)
+                self.notes?.remove(at: indexPath.row)
+            }
+            }
+            catch {
+                print(error)
+            }
+          return UISwipeActionsConfiguration()
+        }
+    
 
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -85,15 +114,28 @@ class NotesTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
+        //Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if let destination = segue.destination as? ViewController{
+            if let cell = sender as? UITableViewCell{
+                
+                destination.old = true
+                destination.noteName = notes![tableView.indexPath(for: cell)!.row].value(forKey: "title") as! String
+                
+            }
+            
+            if let button = sender as? UIBarButtonItem{
+                destination.old = false
+            }
+        }
     }
-    */
+    
     
     func loadData()
     {
@@ -101,6 +143,8 @@ class NotesTableViewController: UITableViewController {
        let context = appDelegate.persistentContainer.viewContext
          
        let FetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes")
+        
+        FetchReq.predicate = NSPredicate(format: "category = %@", catname!)
         
         do{
             let result = try context.fetch(FetchReq)
