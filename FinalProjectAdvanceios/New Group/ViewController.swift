@@ -43,14 +43,27 @@ class ViewController: UIViewController {
                     categoryTxtField.text = EditNote!.value(forKey: "category") as? String
                     titleTxtField.text = EditNote!.value(forKey: "title") as? String
                     descTxtField.text = EditNote!.value(forKey: "desc") as? String
-                    
-                
-                
             }
                 catch{
                     print(error)
                 }
             }
+//        else{
+//            let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes")
+//            
+//            fetchReq.predicate = NSPredicate(format: "title = %@", noteName)
+//            fetchReq.returnsObjectsAsFaults = false
+//            
+//            do{
+//                let result = try context!.fetch(fetchReq)
+//                EditNote = result[0] as! NSManagedObject
+//                categoryTxtField.text = EditNote!.value(forKey: "category") as? String
+//            }
+//            catch {
+//                print(error)
+//            }
+//            
+//        }
             
         }
         

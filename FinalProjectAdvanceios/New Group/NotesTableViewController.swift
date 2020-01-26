@@ -58,18 +58,31 @@ class NotesTableViewController: UITableViewController {
         "Notes")
         fetchReq.predicate = NSPredicate(format: "title contains %@", notesTitle!)
         fetchReq.returnsObjectsAsFaults = false
+        
+        
+        let  delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
         do{
         let req = try context.fetch(fetchReq)
             for r in req as! [NSManagedObject]
             {
                 context.delete(r)
                 self.notes?.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
             }
             }
             catch {
                 print(error)
             }
-          return UISwipeActionsConfiguration()
+        }
+            do{
+              try context.save()
+              loadData()
+              }
+            catch
+              {
+              print(error)
+              }
+          return UISwipeActionsConfiguration(actions: [delete])
         }
     
 
@@ -124,14 +137,16 @@ class NotesTableViewController: UITableViewController {
         
         if let destination = segue.destination as? ViewController{
             if let cell = sender as? UITableViewCell{
-                
+                           
                 destination.old = true
                 destination.noteName = notes![tableView.indexPath(for: cell)!.row].value(forKey: "title") as! String
+//                destination.noteName = notes![tableView.indexPath(for: cell)!.row].value(forKey: "title") as! String
                 
             }
             
             if let button = sender as? UIBarButtonItem{
                 destination.old = false
+                
             }
         }
     }
