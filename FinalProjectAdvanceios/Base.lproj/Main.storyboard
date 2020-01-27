@@ -79,14 +79,20 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClS-oL-lBy">
-                                <rect key="frame" x="261" y="431" width="53" height="30"/>
+                                <rect key="frame" x="265" y="431" width="45" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="recored"/>
+                                <state key="normal" title="record"/>
+                                <connections>
+                                    <action selector="record_btn_pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ws3-52-chm"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHq-ci-9c0">
                                 <rect key="frame" x="272" y="469" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="play"/>
+                                <connections>
+                                    <action selector="playBTN:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TSb-H3-ihg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -102,6 +108,8 @@
                         <outlet property="categoryTxtField" destination="8is-Am-0IH" id="K5Y-sZ-Oof"/>
                         <outlet property="descTxtField" destination="Vr9-my-fdc" id="YzB-e0-WVL"/>
                         <outlet property="imageView" destination="tey-BP-qA5" id="9eZ-tC-RYb"/>
+                        <outlet property="play" destination="SHq-ci-9c0" id="emm-mY-Wg4"/>
+                        <outlet property="record" destination="ClS-oL-lBy" id="gTF-BR-tVE"/>
                         <outlet property="titleTxtField" destination="Bnq-V4-BiE" id="BOb-cm-1e9"/>
                     </connections>
                 </viewController>

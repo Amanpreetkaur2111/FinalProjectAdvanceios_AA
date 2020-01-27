@@ -8,16 +8,29 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AVAudioRecorderDelegate {
 
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var categoryTxtField: UITextField!
     @IBOutlet weak var titleTxtField: UITextField!
     @IBOutlet weak var descTxtField: UITextView!
+    //Var for Audio recording
+    
+    @IBOutlet weak var record: UIButton!
+    @IBOutlet weak var play: UIButton!
+    
+    var recordingSession: AVAudioSession!
+    var audioRecorder: AVAudioRecorder!
+    
+   var player =  AVAudioPlayer()
     
     
+    
+    
+    //
     var EditNote: NSManagedObject?
     var noteName = ""
     var old: Bool?
@@ -26,12 +39,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // initializing recording session
+        recordingSession = AVAudioSession.sharedInstance()
+        
+       
+        
+        
+        //For Note whole Detail
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         context = appDelegate.persistentContainer.viewContext
         
         if old!{
             // old note
-            
+             
             
             let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes")
             
@@ -86,29 +107,36 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                 categoryTxtField.text = ""
                 titleTxtField.text = ""
                 descTxtField.text = ""
-       
-          
-        }
+       }
         
         
+    
+    
     @IBAction func ImagePicker(_ sender: UIButton) {
         //AC
         // action = from galary
-//        let photoLibraryAction = UIAlertAction(title: "Choose from library", style: .default) { (action) in
-//            showImagePickerController(sourceType: .photoLibrary)
-//        }
-//        let cameraAction = UIAlertAction(title: "Take from Camera", style: .default) { (action) in
-//            showImagePickerController(sourceType: .camera )
-//        }
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//
         
+    
+        let ac = UIAlertController(title: "Select Image source", message: nil, preferredStyle: .actionSheet)
         
+        let photoLibraryAction = UIAlertAction(title: "Choose from library", style: .default) { (action) in
+            showImagePickerController(sourceType: .photoLibrary)
+        }
+        let cameraAction = UIAlertAction(title: "Take from Camera", style: .default) { (action) in
+            showImagePickerController(sourceType: .camera )
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+       
+        ac.addAction(photoLibraryAction)
+        ac.addAction(cameraAction)
+        ac.addAction(cancelAction)
+        
+        present(ac, animated: true, completion: nil)
         
         
         func showImagePickerController(sourceType: UIImagePickerController.SourceType){
             let vc = UIImagePickerController()
-                   vc.sourceType = .photoLibrary
+            vc.sourceType = sourceType
                    vc.allowsEditing = true
                    vc.delegate = self
                    present(vc, animated: true)
@@ -138,8 +166,100 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     
     
+    @IBAction func record_btn_pressed(_ sender: UIButton) {
+        
+        if sender.titleLabel?.text == "record"{
+            startRecording()
+            // start recording
+            sender.setTitle("Stop recording", for: .normal)
+            
+        }else{
+            stopRecording()
+            // stop recording
+            sender.setTitle("record", for: .normal)
+            
+        }
+        
+    }
+    
+    
+    func startRecording(){
+       
+        let audioFilename = getDocumentsDirectory().appendingPathComponent("\(titleTxtField.text!).m4a")
+
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+
+        do {
+            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
+            audioRecorder.delegate = self
+            audioRecorder.record()
+
+           
+        } catch {
+            print("error in recording")//finishRecording(success: false)
+        }
+        
+        
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func stopRecording(){
+        
+//        audioRecorder.stop()
+//        audioRecorder = nil
+
+        
+    }
+    
+    @IBAction func playBTN(_ sender: UIButton) {
+        
+    
     
         
+        let audioFilename = getDocumentsDirectory().appendingPathComponent("\(titleTxtField.text!).m4a")
+
+        
+        if sender.titleLabel?.text == "play"{
+         // play audio from file
+            
+            
+            let audioFilename = getDocumentsDirectory().appendingPathComponent("\(titleTxtField.text!).m4a")
+            
+            
+            // code
+            
+            do {
+                              try player = AVAudioPlayer(contentsOf: audioFilename )
+                             
+                          } catch {
+                              print(error)
+                          }
+            
+            sender.setTitle("stop", for: .normal)
+            
+        }else{
+            
+            
+            //stop code
+            player.stop()
+           // player = nil
+            
+             sender.setTitle("play", for: .normal)
+            
+        }
+        
+        
+    }
+    
 }
 
 
