@@ -43,8 +43,8 @@ class NotesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "noteCell", for: indexPath)
 
         cell.textLabel?.text = notes![indexPath.row].value(forKey: "title") as! String
-        
-        // Configure the cell...
+        cell.detailTextLabel?.text = (notes![indexPath.row].value(forKey: "date") as! Date).description
+       // Configure the cell...
 
         return cell
     }
@@ -146,6 +146,7 @@ class NotesTableViewController: UITableViewController {
             
             if let button = sender as? UIBarButtonItem{
                 destination.old = false
+                destination.catagary_name = catname
                 
             }
         }

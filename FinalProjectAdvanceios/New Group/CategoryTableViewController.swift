@@ -12,17 +12,20 @@ import  CoreData
 class CategoryTableViewController: UITableViewController {
 
     var category: [String]?
-    
+//    var cat = ""
+//    @IBOutlet weak var hourLabel: UILabel!
+//    @IBOutlet weak var dateLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loadData()
+      loadData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
+//        
+    }                                     
 
     // MARK: - Table view data source
 
@@ -43,14 +46,49 @@ class CategoryTableViewController: UITableViewController {
             cell.textLabel?.text = category![indexPath.row]
             
         // Configure the cell...
-
-            return cell
+         return cell
             
         }
         return UITableViewCell()
     }
     
-
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let categ = category![indexPath.row] as? String
+//        let categ = category![indexPath.row].value(forKey: "category") as? String
+        let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName:
+        "Notes")
+        fetchReq.predicate = NSPredicate(format: "category contains %@", categ!)
+        fetchReq.returnsObjectsAsFaults = false
+        
+        
+        let  delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
+        do{
+        let req = try context.fetch(fetchReq)
+            for r in req as! [NSManagedObject]
+            {
+                context.delete(r)
+                self.category?.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            }
+            catch {
+                print(error)
+            }
+        }
+            do{
+              try context.save()
+              loadData()
+              }
+            catch
+              {
+              print(error)
+              }
+          return UISwipeActionsConfiguration(actions: [delete])
+    }
+                                            
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

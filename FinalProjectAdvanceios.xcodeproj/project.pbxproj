@@ -7,18 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		614E233923DE3B4500695C83 /* FinalProjectAdvanceios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 614E233723DE3B4500695C83 /* FinalProjectAdvanceios.xcdatamodeld */; };
 		615F42CF23DA2C28002FE090 /* NotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615F42CE23DA2C28002FE090 /* NotesTableViewController.swift */; };
 		615F42D123DA3294002FE090 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615F42D023DA3294002FE090 /* CategoryTableViewController.swift */; };
 		BD3863CF23DA180E007CD9C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3863CE23DA180E007CD9C1 /* AppDelegate.swift */; };
 		BD3863D123DA180E007CD9C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3863D023DA180E007CD9C1 /* SceneDelegate.swift */; };
 		BD3863D323DA180E007CD9C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3863D223DA180E007CD9C1 /* ViewController.swift */; };
 		BD3863D623DA180E007CD9C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD3863D423DA180E007CD9C1 /* Main.storyboard */; };
-		BD3863D923DA180E007CD9C1 /* FinalProjectAdvanceios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD3863D723DA180E007CD9C1 /* FinalProjectAdvanceios.xcdatamodeld */; };
 		BD3863DB23DA180F007CD9C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD3863DA23DA180F007CD9C1 /* Assets.xcassets */; };
 		BD3863DE23DA180F007CD9C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD3863DC23DA180F007CD9C1 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		614E233823DE3B4500695C83 /* FinalProjectAdvanceios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FinalProjectAdvanceios.xcdatamodel; sourceTree = "<group>"; };
 		615F42CE23DA2C28002FE090 /* NotesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewController.swift; sourceTree = "<group>"; };
 		615F42D023DA3294002FE090 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		BD3863CB23DA180E007CD9C1 /* FinalProjectAdvanceios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProjectAdvanceios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,7 +27,6 @@
 		BD3863D023DA180E007CD9C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BD3863D223DA180E007CD9C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BD3863D523DA180E007CD9C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BD3863D823DA180E007CD9C1 /* FinalProjectAdvanceios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FinalProjectAdvanceios.xcdatamodel; sourceTree = "<group>"; };
 		BD3863DA23DA180F007CD9C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD3863DD23DA180F007CD9C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD3863DF23DA180F007CD9C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +56,7 @@
 		BD3863C223DA180D007CD9C1 = {
 			isa = PBXGroup;
 			children = (
+				614E233723DE3B4500695C83 /* FinalProjectAdvanceios.xcdatamodeld */,
 				BD3863CD23DA180E007CD9C1 /* FinalProjectAdvanceios */,
 				BD3863CC23DA180E007CD9C1 /* Products */,
 			);
@@ -79,7 +80,6 @@
 				BD3863DA23DA180F007CD9C1 /* Assets.xcassets */,
 				BD3863DC23DA180F007CD9C1 /* LaunchScreen.storyboard */,
 				BD3863DF23DA180F007CD9C1 /* Info.plist */,
-				BD3863D723DA180E007CD9C1 /* FinalProjectAdvanceios.xcdatamodeld */,
 			);
 			path = FinalProjectAdvanceios;
 			sourceTree = "<group>";
@@ -156,11 +156,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD3863D323DA180E007CD9C1 /* ViewController.swift in Sources */,
-				BD3863D923DA180E007CD9C1 /* FinalProjectAdvanceios.xcdatamodeld in Sources */,
 				BD3863CF23DA180E007CD9C1 /* AppDelegate.swift in Sources */,
 				BD3863D123DA180E007CD9C1 /* SceneDelegate.swift in Sources */,
 				615F42CF23DA2C28002FE090 /* NotesTableViewController.swift in Sources */,
 				615F42D123DA3294002FE090 /* CategoryTableViewController.swift in Sources */,
+				614E233923DE3B4500695C83 /* FinalProjectAdvanceios.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,12 +360,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		BD3863D723DA180E007CD9C1 /* FinalProjectAdvanceios.xcdatamodeld */ = {
+		614E233723DE3B4500695C83 /* FinalProjectAdvanceios.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				BD3863D823DA180E007CD9C1 /* FinalProjectAdvanceios.xcdatamodel */,
+				614E233823DE3B4500695C83 /* FinalProjectAdvanceios.xcdatamodel */,
 			);
-			currentVersion = BD3863D823DA180E007CD9C1 /* FinalProjectAdvanceios.xcdatamodel */;
+			currentVersion = 614E233823DE3B4500695C83 /* FinalProjectAdvanceios.xcdatamodel */;
 			path = FinalProjectAdvanceios.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
