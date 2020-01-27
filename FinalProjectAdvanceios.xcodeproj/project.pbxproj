@@ -16,6 +16,7 @@
 		BD3863D623DA180E007CD9C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD3863D423DA180E007CD9C1 /* Main.storyboard */; };
 		BD3863DB23DA180F007CD9C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD3863DA23DA180F007CD9C1 /* Assets.xcassets */; };
 		BD3863DE23DA180F007CD9C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD3863DC23DA180F007CD9C1 /* LaunchScreen.storyboard */; };
+		BD51899C23DF9BAD004ED147 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD51899B23DF9BAD004ED147 /* RouteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		BD3863DA23DA180F007CD9C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD3863DD23DA180F007CD9C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD3863DF23DA180F007CD9C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD51899B23DF9BAD004ED147 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 				BD3863D223DA180E007CD9C1 /* ViewController.swift */,
 				615F42D023DA3294002FE090 /* CategoryTableViewController.swift */,
 				615F42CE23DA2C28002FE090 /* NotesTableViewController.swift */,
+				BD51899B23DF9BAD004ED147 /* RouteViewController.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				615F42CF23DA2C28002FE090 /* NotesTableViewController.swift in Sources */,
 				615F42D123DA3294002FE090 /* CategoryTableViewController.swift in Sources */,
 				614E233923DE3B4500695C83 /* FinalProjectAdvanceios.xcdatamodeld in Sources */,
+				BD51899C23DF9BAD004ED147 /* RouteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

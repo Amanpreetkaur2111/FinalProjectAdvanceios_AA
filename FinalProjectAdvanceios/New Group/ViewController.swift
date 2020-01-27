@@ -113,8 +113,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     // grabbing the user location
     let userLocation: CLLocation = locations[0]
     
-    latitude = userLocation.coordinate.latitude
-    longitude = userLocation.coordinate.longitude
+    latitude = Double(userLocation.coordinate.latitude)
+    longitude = Double(userLocation.coordinate.longitude)
+    print(latitude)
+        print(longitude)
     
     }
     

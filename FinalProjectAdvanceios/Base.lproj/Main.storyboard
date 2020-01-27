@@ -128,16 +128,16 @@
             </objects>
             <point key="canvasLocation" x="1509.5999999999999" y="-397.15142428785612"/>
         </scene>
-        <!--View Controller-->
+        <!--Route View Controller-->
         <scene sceneID="vvd-qY-qBZ">
             <objects>
-                <viewController id="Vx8-aZ-OPb" sceneMemberID="viewController">
+                <viewController id="Vx8-aZ-OPb" customClass="RouteViewController" customModule="FinalProjectAdvanceios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gz0-Tp-S1a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JTT-YD-d26">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
@@ -145,10 +145,13 @@
                         <viewLayoutGuide key="safeArea" id="QTK-H4-dfW"/>
                     </view>
                     <navigationItem key="navigationItem" id="9h1-UD-HSJ"/>
+                    <connections>
+                        <outlet property="mapView" destination="JTT-YD-d26" id="kYI-RU-QYW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wUz-bG-eZX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2358" y="-397"/>
+            <point key="canvasLocation" x="2357.5999999999999" y="-397.15142428785612"/>
         </scene>
         <!--Category-->
         <scene sceneID="ucH-HU-qR6">

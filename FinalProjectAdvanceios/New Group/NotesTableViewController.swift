@@ -50,8 +50,13 @@ class NotesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "noteCell", for: indexPath)
 
         cell.textLabel?.text = notes![indexPath.row].value(forKey: "title") as! String
-        cell.detailTextLabel?.text = (notes![indexPath.row].value(forKey: "date") as! Date).description + " Lat: \(notes![indexPath.row].value(forKey: "latitude") as! Double) , Long: \(notes![indexPath.row].value(forKey: "longitude") as! Double)"
-       // Configure the cell...
+        
+        var lat = notes![indexPath.row].value(forKey: "latitude") as! Double
+        var long = notes![indexPath.row].value(forKey: "longitude") as! Double
+        
+        var S = String(format:"Lat: %.2f Long: %.2f", lat, long)
+        
+        cell.detailTextLabel?.text = (notes![indexPath.row].value(forKey: "date") as! Date).description + S
 
         return cell
     }
