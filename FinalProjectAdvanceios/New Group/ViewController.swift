@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import AVFoundation
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AVAudioRecorderDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AVAudioRecorderDelegate,AVAudioPlayerDelegate {
 
     
     @IBOutlet weak var imageView: UIImageView!
@@ -22,11 +22,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var record: UIButton!
     @IBOutlet weak var play: UIButton!
     
-    var recordingSession: AVAudioSession!
-    var audioRecorder: AVAudioRecorder!
     
-   var player =  AVAudioPlayer()
+    var SoundRecorder: AVAudioRecorder!
+    var SoundPlayer: AVAudioPlayer!
     
+    
+    //var fileName : String? //= "audioFile.m4a"
     
     
     
@@ -40,10 +41,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // initializing recording session
-        recordingSession = AVAudioSession.sharedInstance()
-        
        
+        
+        play.isEnabled = old!
         
         
         //For Note whole Detail
@@ -81,6 +81,110 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
             
     }
+    
+    func getDocumentsDirector() -> URL {
+       let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+           return paths[0]
+       }
+       
+       func setupRecorder() {
+        let audioFilename = getDocumentsDirector().appendingPathComponent("\(titleTxtField.text).m4a")
+           let recordSetting = [ AVFormatIDKey : kAudioFormatAppleLossless ,
+                                 AVEncoderAudioQualityKey : AVAudioQuality.max.rawValue,
+                                 AVEncoderBitRateKey : 320000,
+                                 AVNumberOfChannelsKey : 2,
+                                 AVSampleRateKey : 44100.2 ] as [String : Any]
+           do {
+               SoundRecorder = try AVAudioRecorder(url: audioFilename, settings: recordSetting)
+               SoundRecorder.delegate = self
+               SoundRecorder.prepareToRecord()
+           } catch {
+               print(error)
+           }
+       }
+       
+       func setupPlayer() {
+           let audioFilename = getDocumentsDirector().appendingPathComponent("\(titleTxtField.text).m4a")
+           do {
+               SoundPlayer = try AVAudioPlayer(contentsOf: audioFilename)
+               SoundPlayer.delegate = self
+               SoundPlayer.prepareToPlay()
+               SoundPlayer.volume = 1.0
+           } catch {
+               print(error)
+           }
+
+       }
+       
+       func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+           play.isEnabled = true
+       }
+       
+       func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+           record.isEnabled = true
+           play.setTitle("Play", for: .normal)
+       }
+       
+       
+       
+    @IBAction func recordBtn(_ sender: Any) {
+        
+        
+        if record.titleLabel?.text == "Record" {
+                    setupRecorder()
+                   SoundRecorder.record()
+                   record.setTitle("Stop", for: .normal)
+                   play.isEnabled = false
+               } else {
+                   SoundRecorder.stop()
+                   record.setTitle("Record", for: .normal)
+                   play.isEnabled = false
+               }
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    @IBAction func playBtn(_ sender: Any) {
+        
+        
+        
+        
+               if play.titleLabel?.text == "Play"
+               {
+                       play.setTitle("Stop", for: .normal)
+                       record.isEnabled = false
+                       setupPlayer()
+                       SoundPlayer.play()
+                   } else {
+                   
+                       SoundPlayer!.stop()
+                       play.setTitle("Play", for: .normal)
+                       record.isEnabled = false
+                   }
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
     
 
@@ -166,100 +270,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     
     
-    @IBAction func record_btn_pressed(_ sender: UIButton) {
-        
-        if sender.titleLabel?.text == "record"{
-            startRecording()
-            // start recording
-            sender.setTitle("Stop recording", for: .normal)
-            
-        }else{
-            stopRecording()
-            // stop recording
-            sender.setTitle("record", for: .normal)
-            
-        }
-        
-    }
-    
-    
-    func startRecording(){
-       
-        let audioFilename = getDocumentsDirectory().appendingPathComponent("\(titleTxtField.text!).m4a")
-
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000,
-            AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-        ]
-
-        do {
-            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
-            audioRecorder.delegate = self
-            audioRecorder.record()
-
-           
-        } catch {
-            print("error in recording")//finishRecording(success: false)
-        }
-        
-        
-    }
-    
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    func stopRecording(){
-        
-//        audioRecorder.stop()
-//        audioRecorder = nil
-
-        
-    }
-    
-    @IBAction func playBTN(_ sender: UIButton) {
-        
-    
-    
-        
-        let audioFilename = getDocumentsDirectory().appendingPathComponent("\(titleTxtField.text!).m4a")
-
-        
-        if sender.titleLabel?.text == "play"{
-         // play audio from file
-            
-            
-            let audioFilename = getDocumentsDirectory().appendingPathComponent("\(titleTxtField.text!).m4a")
-            
-            
-            // code
-            
-            do {
-                              try player = AVAudioPlayer(contentsOf: audioFilename )
-                             
-                          } catch {
-                              print(error)
-                          }
-            
-            sender.setTitle("stop", for: .normal)
-            
-        }else{
-            
-            
-            //stop code
-            player.stop()
-           // player = nil
-            
-             sender.setTitle("play", for: .normal)
-            
-        }
-        
-        
-    }
-    
+   
 }
 
 

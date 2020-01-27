@@ -79,19 +79,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClS-oL-lBy">
-                                <rect key="frame" x="265" y="431" width="45" height="30"/>
+                                <rect key="frame" x="263" y="431" width="49" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="record"/>
+                                <state key="normal" title="Record"/>
                                 <connections>
-                                    <action selector="record_btn_pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ws3-52-chm"/>
+                                    <action selector="recordBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lsc-ux-a6g"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHq-ci-9c0">
                                 <rect key="frame" x="272" y="469" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="play"/>
+                                <state key="normal" title="Play"/>
                                 <connections>
-                                    <action selector="playBTN:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TSb-H3-ihg"/>
+                                    <action selector="playBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WNP-ez-vMM"/>
                                 </connections>
                             </button>
                         </subviews>
