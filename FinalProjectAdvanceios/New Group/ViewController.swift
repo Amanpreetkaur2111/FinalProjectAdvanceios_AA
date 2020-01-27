@@ -9,8 +9,9 @@
 import UIKit
 import CoreData
 import AVFoundation
+import CoreLocation
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AVAudioRecorderDelegate,AVAudioPlayerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AVAudioRecorderDelegate,AVAudioPlayerDelegate , CLLocationManagerDelegate {
 
     
     @IBOutlet weak var imageView: UIImageView!
@@ -29,6 +30,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     //var fileName : String? //= "audioFile.m4a"
     
+    var latitude : Double = 0.0
+    var  longitude : Double = 0.0
     
     
     //
@@ -37,11 +40,32 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     var old: Bool?
     var context: NSManagedObjectContext?
     var catagary_name: String?
+    
+    // location manager
+    
+    var locationManager = CLLocationManager()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
        
+        
+        
+        
+        
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        
+        
+        
+        
+        
         
         play.isEnabled = old!
         
@@ -66,8 +90,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                     categoryTxtField.text = EditNote!.value(forKey: "category") as? String
                     titleTxtField.text = EditNote!.value(forKey: "title") as? String
                     descTxtField.text = EditNote!.value(forKey: "desc") as? String
-                
-                imageView.image = EditNote!.value(forKey: "image") as! UIImage
+                    imageView.image = EditNote!.value(forKey: "image") as! UIImage
             }
                 catch{
                     print(error)
@@ -81,6 +104,24 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
             
     }
+    
+    
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    
+    // grabbing the user location
+    let userLocation: CLLocation = locations[0]
+    
+    latitude = userLocation.coordinate.latitude
+    longitude = userLocation.coordinate.longitude
+    
+    }
+    
+    
+    
+    
+    
     
     func getDocumentsDirector() -> URL {
        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -191,6 +232,26 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
     @IBAction func saveData(_ sender: UIButton) {
         
+        if categoryTxtField.text == "" || titleTxtField.text == "" || descTxtField.text == "" {
+                   
+              
+           let alertController = UIAlertController(title: "Empty Fields", message:"All fields are mandatory", preferredStyle: .alert)
+               
+           alertController.addAction(UIAlertAction(title: "OK", style: .default))
+
+           self.present(alertController, animated: true, completion: nil)
+               
+               
+               
+               }
+        
+        
+        
+        
+        
+        
+        
+        
         if !old! {
             // add new objectnew object
             EditNote = NSEntityDescription.insertNewObject(forEntityName: "Notes", into: context!)
@@ -202,6 +263,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             EditNote!.setValue(descTxtField.text, forKey: "desc")
             EditNote!.setValue(NSDate(), forKey: "date")
         EditNote!.setValue(imageView.image, forKey: "image")
+        
+         EditNote!.setValue(longitude, forKey: "longitude")
+        
+          EditNote!.setValue(latitude, forKey: "latitude")
+        
+        
+        
+        
                 do{
                     try context!.save()
                 }
@@ -211,7 +280,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                 categoryTxtField.text = ""
                 titleTxtField.text = ""
                 descTxtField.text = ""
-       }
+        
+        
+    }
         
         
     

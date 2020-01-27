@@ -27,6 +27,10 @@ class NotesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        self.tableView.rowHeight = 100
+        
+        
     }
 
     // MARK: - Table view data source
@@ -46,7 +50,7 @@ class NotesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "noteCell", for: indexPath)
 
         cell.textLabel?.text = notes![indexPath.row].value(forKey: "title") as! String
-        cell.detailTextLabel?.text = (notes![indexPath.row].value(forKey: "date") as! Date).description
+        cell.detailTextLabel?.text = (notes![indexPath.row].value(forKey: "date") as! Date).description + " Lat: \(notes![indexPath.row].value(forKey: "latitude") as! Double) , Long: \(notes![indexPath.row].value(forKey: "longitude") as! Double)"
        // Configure the cell...
 
         return cell
@@ -147,7 +151,7 @@ class NotesTableViewController: UITableViewController {
                 
             }
             
-            if let button = sender as? UIBarButtonItem{
+            if let button = sender as? UIBarButtonItem {
                 destination.old = false
                 destination.catagary_name = catname
                 

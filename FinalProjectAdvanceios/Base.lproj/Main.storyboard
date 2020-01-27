@@ -106,10 +106,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Location" id="VQM-aJ-JHS"/>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" id="MNY-4B-e5z"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="MNY-4B-e5z">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="paperplane" catalog="system" id="Nrz-py-gKQ">
+                            <connections>
+                                <segue destination="Vx8-aZ-OPb" kind="show" id="5MD-U5-2Vs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="categoryTxtField" destination="8is-Am-0IH" id="K5Y-sZ-Oof"/>
@@ -123,6 +127,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1509.5999999999999" y="-397.15142428785612"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vvd-qY-qBZ">
+            <objects>
+                <viewController id="Vx8-aZ-OPb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gz0-Tp-S1a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JTT-YD-d26">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="QTK-H4-dfW"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9h1-UD-HSJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wUz-bG-eZX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2358" y="-397"/>
         </scene>
         <!--Category-->
         <scene sceneID="ucH-HU-qR6">
@@ -207,22 +233,22 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" textLabel="kgf-iJ-WCZ" detailTextLabel="SZN-TR-p1R" style="IBUITableViewCellStyleSubtitle" id="YKb-jW-E80">
-                                <rect key="frame" x="0.0" y="72" width="375" height="55.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" textLabel="kgf-iJ-WCZ" detailTextLabel="bWN-Lf-ivO" rowHeight="100" style="IBUITableViewCellStyleSubtitle" id="YKb-jW-E80">
+                                <rect key="frame" x="0.0" y="72" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YKb-jW-E80" id="KQC-cQ-FqB">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kgf-iJ-WCZ">
-                                            <rect key="frame" x="16" y="10" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="16" y="30" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SZN-TR-p1R">
-                                            <rect key="frame" x="16" y="31.5" width="44" height="14.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bWN-Lf-ivO">
+                                            <rect key="frame" x="16" y="53.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -252,7 +278,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="As0-3f-yUb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1086" y="-1109"/>
+            <point key="canvasLocation" x="1085.5999999999999" y="-1109.5952023988007"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2ED-N0-jTf">
@@ -279,6 +305,7 @@
         <image name="folder" catalog="system" width="64" height="46"/>
         <image name="folder.badge.plus" catalog="system" width="64" height="42"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
+        <image name="paperplane" catalog="system" width="64" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="oOL-qk-Qar"/>
