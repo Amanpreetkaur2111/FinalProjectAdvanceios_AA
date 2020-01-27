@@ -56,7 +56,6 @@
 		BD3863C223DA180D007CD9C1 = {
 			isa = PBXGroup;
 			children = (
-				614E233723DE3B4500695C83 /* FinalProjectAdvanceios.xcdatamodeld */,
 				BD3863CD23DA180E007CD9C1 /* FinalProjectAdvanceios */,
 				BD3863CC23DA180E007CD9C1 /* Products */,
 			);
@@ -79,6 +78,7 @@
 				BD3863D423DA180E007CD9C1 /* Main.storyboard */,
 				BD3863DA23DA180F007CD9C1 /* Assets.xcassets */,
 				BD3863DC23DA180F007CD9C1 /* LaunchScreen.storyboard */,
+				614E233723DE3B4500695C83 /* FinalProjectAdvanceios.xcdatamodeld */,
 				BD3863DF23DA180F007CD9C1 /* Info.plist */,
 			);
 			path = FinalProjectAdvanceios;
@@ -367,7 +367,7 @@
 			);
 			currentVersion = 614E233823DE3B4500695C83 /* FinalProjectAdvanceios.xcdatamodel */;
 			path = FinalProjectAdvanceios.xcdatamodeld;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
