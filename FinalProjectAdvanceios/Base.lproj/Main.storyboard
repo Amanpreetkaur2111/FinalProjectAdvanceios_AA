@@ -58,7 +58,9 @@
                                 <rect key="frame" x="112" y="565" width="150" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Save"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
                                     <action selector="saveData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BA0-R1-34c"/>
                                 </connections>
@@ -73,7 +75,9 @@
                                 <rect key="frame" x="21" y="380" width="126" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Choose Image"/>
+                                <state key="normal" title="Choose Image">
+                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
                                     <action selector="ImagePicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s6Q-g9-Kjy"/>
                                 </connections>
@@ -81,7 +85,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClS-oL-lBy">
                                 <rect key="frame" x="263" y="431" width="49" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Record"/>
+                                <state key="normal" title="Record">
+                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
                                     <action selector="recordBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lsc-ux-a6g"/>
                                 </connections>
@@ -89,7 +95,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHq-ci-9c0">
                                 <rect key="frame" x="272" y="469" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
                                     <action selector="playBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WNP-ez-vMM"/>
                                 </connections>
@@ -99,7 +107,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Audio" id="Y2M-ae-GGC"/>
                         <barButtonItem title="Location" id="VQM-aJ-JHS"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="MNY-4B-e5z"/>
@@ -125,9 +132,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="jGH-6A-9zH">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search for notes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WgT-QI-peN">
+                                    <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGE-Ka-x7j">
+                                    <rect key="frame" x="355" y="0.0" width="20" height="44"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" image="magnifyingglass" catalog="system">
+                                        <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="searchbarAction:" destination="dHv-u8-vnf" eventType="touchUpInside" id="Twh-ry-X7x"/>
+                                        <segue destination="jTn-cL-27y" kind="show" id="oOL-qk-Qar"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryCell" rowHeight="85" id="jq8-HM-RbC">
-                                <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jq8-HM-RbC" id="klm-8r-HMj">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
@@ -152,6 +181,10 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Category" id="0eL-fG-Vp6"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchNote" destination="WgT-QI-peN" id="j6D-XP-7Q9"/>
+                        <outlet property="searchbar" destination="pGE-Ka-x7j" id="76W-SY-Kp2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9lC-UL-psF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -245,8 +278,10 @@
     <resources>
         <image name="folder" catalog="system" width="64" height="46"/>
         <image name="folder.badge.plus" catalog="system" width="64" height="42"/>
+        <image name="magnifyingglass" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="oOL-qk-Qar"/>
         <segue reference="rRT-BV-gBg"/>
     </inferredMetricsTieBreakers>
 </document>

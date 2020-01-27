@@ -10,6 +10,11 @@ import UIKit
 import  CoreData
 
 class CategoryTableViewController: UITableViewController {
+    
+    
+    @IBOutlet var searchbar: UIButton!
+    @IBOutlet var searchNote: UITextField!
+    
 
     var category: [String]?
 //    var cat = ""
@@ -24,8 +29,46 @@ class CategoryTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-//        
-    }                                     
+//
+        
+    }
+    
+    
+    @IBAction func searchbarAction(_ sender: UIButton) {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     // MARK: - Table view data source
 
@@ -133,7 +176,21 @@ class CategoryTableViewController: UITableViewController {
         
         if let des = segue.destination as? NotesTableViewController{
             
-            des.catname = (sender as! UITableViewCell).textLabel?.text
+            
+           
+            if let search = sender as? UITableViewCell{
+            
+                des.catname = (sender as! UITableViewCell).textLabel?.text}
+            
+            
+            des.noteToSearch = searchNote.text
+            
+            if let search = sender as? UIButton{
+                
+                des.performSearch = true
+                
+            }
+            
             
             
         }

@@ -15,6 +15,9 @@ class NotesTableViewController: UITableViewController {
     
     var notes: [NSManagedObject]?
     var catname: String?
+    var noteToSearch: String?
+    var performSearch = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -160,8 +163,19 @@ class NotesTableViewController: UITableViewController {
          
        let FetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes")
         
-        FetchReq.predicate = NSPredicate(format: "category = %@", catname!)
         
+        if performSearch{
+            
+    FetchReq.predicate = NSPredicate(format: "title contains[c] %@", noteToSearch!)
+            
+            
+        }else{
+            FetchReq.predicate = NSPredicate(format: "category = %@", catname!)
+        }
+        
+        
+        
+         
         do{
             let result = try context.fetch(FetchReq)
             notes = result as! [NSManagedObject]
