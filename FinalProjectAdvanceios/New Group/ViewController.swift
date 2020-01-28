@@ -113,10 +113,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     // grabbing the user location
     let userLocation: CLLocation = locations[0]
     
+        if !old!{
+        
     latitude = Double(userLocation.coordinate.latitude)
-    longitude = Double(userLocation.coordinate.longitude)
-    print(latitude)
-        print(longitude)
+            longitude = Double(userLocation.coordinate.longitude)}
+    
     
     }
     
@@ -195,10 +196,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     @IBAction func playBtn(_ sender: Any) {
         
-        
-        
-        
-               if play.titleLabel?.text == "Play"
+                   if play.titleLabel?.text == "Play"
                {
                        play.setTitle("Stop", for: .normal)
                        record.isEnabled = false
@@ -337,6 +335,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
         // print out the image size as a test
         imageView.image = selectedIMAGE
+        
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let descrip = segue.destination as? RouteViewController {
+            
+            descrip.latit =  EditNote!.value(forKey: "latitude") as! CLLocationDegrees
+            
+            descrip.longi = EditNote!.value(forKey: "longitude") as! CLLocationDegrees
+            
+            
+            
+            
+            
+            
+        }
+        
         
     }
     
