@@ -148,10 +148,10 @@ class NotesTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         
         if let destination = segue.destination as? ViewController{
-            if let cell = sender as? UITableViewCell{
+        if let cell = sender as? UITableViewCell{
                            
-                destination.old = true
-                destination.noteName = notes![tableView.indexPath(for: cell)!.row].value(forKey: "title") as! String
+        destination.old = true
+        destination.noteName = notes![tableView.indexPath(for: cell)!.row].value(forKey: "title") as! String
 //                destination.noteName = notes![tableView.indexPath(for: cell)!.row].value(forKey: "title") as! String
                 
             }
@@ -174,32 +174,28 @@ class NotesTableViewController: UITableViewController {
         
         
         if performSearch{
-            
-    FetchReq.predicate = NSPredicate(format: "title contains[c] %@", noteToSearch!)
-            
-            
+          FetchReq.predicate = NSPredicate(format: "title contains[c] %@", noteToSearch!)
         }else{
             FetchReq.predicate = NSPredicate(format: "category = %@", catname!)
         }
         
         
         
-         
-        do{
+         do{
             let result = try context.fetch(FetchReq)
             notes = result as! [NSManagedObject]
-        }
+           }
         catch{
             print(error)
         }
         tableView.reloadData()
-        
     }
 
+    
     override func viewWillAppear(_ animated: Bool) {
         loadData()
     }
     override func viewDidDisappear(_ animated: Bool) {
         loadData()
     }
-}
+    }

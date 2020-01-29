@@ -35,67 +35,37 @@ class CategoryTableViewController: UITableViewController {
     
     
     @IBAction func searchbarAction(_ sender: UIButton) {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
+        }
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+      // MARK: - Table view data source
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
+      override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return category?.count ?? 0
-    }
+      }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return category?.count ?? 0
+      }
+
+    
+      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell"){
         
             cell.textLabel?.text = category![indexPath.row]
             
         // Configure the cell...
          return cell
-            
         }
         return UITableViewCell()
     }
     
-    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    
+      override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
@@ -120,15 +90,15 @@ class CategoryTableViewController: UITableViewController {
             catch {
                 print(error)
             }
-        }
-            do{
-              try context.save()
-              loadData()
-              }
-            catch
-              {
-              print(error)
-              }
+         }
+        do{
+            try context.save()
+            loadData()
+            }
+        catch
+            {
+            print(error)
+            }
           return UISwipeActionsConfiguration(actions: [delete])
     }
                                             
@@ -179,33 +149,25 @@ class CategoryTableViewController: UITableViewController {
             
            
             if let search = sender as? UITableViewCell{
-            
-                des.catname = (sender as! UITableViewCell).textLabel?.text}
+            des.catname = (sender as! UITableViewCell).textLabel?.text}
             
             
             des.noteToSearch = searchNote.text
-            
             if let search = sender as? UIButton{
-                
                 des.performSearch = true
-                
             }
-            
-            
-            
         }
         
         if let des2 = segue.destination as? ViewController{
             des2.old = false
         }
         
-        
-        
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
     
 
+    
     func loadData()
     {
        let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -213,22 +175,23 @@ class CategoryTableViewController: UITableViewController {
          
        let FetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes")
         
-        do{
+            do
+            {
             category = []
             let result = try context.fetch(FetchReq)
             for r in result as! [NSManagedObject]{
-                let cat = r.value(forKey: "category") as! String
+            let cat = r.value(forKey: "category") as! String
                 
-                if(!category!.contains(cat)){
+            if(!category!.contains(cat)){
                     category!.append(cat)}
             }
-        }
-        catch{
+            }
+             catch{
             print(error)
         }
-        tableView.reloadData()
-        
+           tableView.reloadData()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         loadData()
     }

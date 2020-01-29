@@ -52,7 +52,7 @@ class RouteViewController: UIViewController,MKMapViewDelegate, CLLocationManager
         
     show_Direction(destination: coordinate, type:  .automobile)
         
-}
+    }
     
     
     func show_Direction(destination: CLLocationCoordinate2D, type: MKDirectionsTransportType){
@@ -96,11 +96,11 @@ class RouteViewController: UIViewController,MKMapViewDelegate, CLLocationManager
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
            if overlay is MKPolyline {
-                let rendrer = MKPolylineRenderer(overlay: overlay)
-               rendrer.strokeColor = .orange
-               rendrer.lineWidth = 5.0
-               return rendrer
-               }
+           let rendrer = MKPolylineRenderer(overlay: overlay)
+            rendrer.strokeColor = .orange
+            rendrer.lineWidth = 5.0
+            return rendrer
+            }
            
            return MKOverlayRenderer()
        }
